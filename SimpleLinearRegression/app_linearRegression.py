@@ -12,13 +12,14 @@ st.set_page_config("Linear Regression",layout="centered")
 
 #Load CSS
 
+def load_css(file_name):
+    base_dir = os.path.dirname(__file__)
+    css_file = os.path.join(base_dir, file_name)
 
-def load_css(file):
-    if os.path.exists(file):
-        with open(file) as f:
-            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
-    else:
-        st.warning("style.css not found. Running without custom CSS.")
+    with open(css_file, "r") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
+load_css("style.css")
 
 #Title
 st.markdown("""
@@ -105,4 +106,5 @@ st.markdown(
 )
 
 st.markdown('</div>', unsafe_allow_html=True)
+
 
