@@ -1,6 +1,7 @@
 import streamlit as st
 import seaborn as sns
 import numpy as np
+import os
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
 from sklearn.preprocessing import StandardScaler
@@ -10,9 +11,13 @@ from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score,root
 st.set_page_config("Multiple Linear Regression",layout="centered")
 
 #Load CSS
-def load_css(file):
-    with open(file) as f:
-        st.markdown(f"<style>{f.read()}</style>",unsafe_allow_html=True)
+def load_css(file_name):
+    base_dir = os.path.dirname(__file__)
+    css_file = os.path.join(base_dir, file_name)
+
+    with open(css_file, "r") as f:
+        st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+
 load_css("style.css")
 
 #Title
@@ -102,3 +107,4 @@ st.markdown(
 )
 
 st.markdown('</div>', unsafe_allow_html=True)
+
