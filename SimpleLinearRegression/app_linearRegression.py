@@ -1,5 +1,6 @@
 import streamlit as st
 import seaborn as sns
+import os
 import numpy as np
 import matplotlib.pyplot as plt
 from sklearn.model_selection import train_test_split
@@ -10,10 +11,14 @@ from sklearn.metrics import mean_absolute_error,mean_squared_error,r2_score,root
 st.set_page_config("Linear Regression",layout="centered")
 
 #Load CSS
+
+
 def load_css(file):
-    with open(file) as f:
-        st.markdown(f"<style>{f.read()}</style>",unsafe_allow_html=True)
-load_css("style.css")
+    if os.path.exists(file):
+        with open(file) as f:
+            st.markdown(f"<style>{f.read()}</style>", unsafe_allow_html=True)
+    else:
+        st.warning("style.css not found. Running without custom CSS.")
 
 #Title
 st.markdown("""
@@ -100,3 +105,4 @@ st.markdown(
 )
 
 st.markdown('</div>', unsafe_allow_html=True)
+
